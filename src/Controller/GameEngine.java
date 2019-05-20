@@ -62,11 +62,8 @@ public class GameEngine implements IGameActions {
         int score = 1;
         if (o.getType() == Type.SPECIAL_BOMB) {
             lives = 0;
-
-            endGame();
         } else if (o.getType() == Type.NORMAL_BOMB && lives > 0) {
             lives--;
-            endGame();
         } else {
             if (o.getType() == Type.SPECIAL_FRUIT) {
                 score = 5;
@@ -89,6 +86,7 @@ public class GameEngine implements IGameActions {
             }
 
         }
+        endGame();
     }
 
     public void render(GraphicsContext gc) {
@@ -120,8 +118,9 @@ public class GameEngine implements IGameActions {
     public void endGame() {
         if (lives <= 0) {
             System.out.println("GAME LOST! LOSER...");
+            exit();
         }
-        exit();
+        
     }
 
     public int setVelocity() {

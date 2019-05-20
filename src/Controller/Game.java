@@ -2,14 +2,13 @@ package Controller;
 
 import Controller.GameEngine.Level;
 import Player.Player;
-import java.sql.Time;
+
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -51,9 +50,7 @@ public class Game extends Application {
         }));
         
         Timeline timeline = new Timeline(new KeyFrame(new Duration(1000), ActionEvent -> {
-
             GameEngine.getInstance(level, player).createGameObject();
-
         }));
         timeline1.setCycleCount(Animation.INDEFINITE);
 
