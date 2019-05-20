@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Objects;
 
 import java.awt.image.BufferedImage;
@@ -6,11 +10,18 @@ import java.util.Random;
 
 import javafx.scene.image.Image;
 
+/**
+ *
+ * @author user
+ */
+public class Pineapple extends GameObject {
+    
+    
+    
+     Random rand = new Random();
+     private Image Image = new Image(getClass().getResource("pineapple0.png").toExternalForm()); 
 
-public class Orange extends GameObject{
-    Random rand = new Random();
-    private Image Image = new Image(getClass().getResource("egg0.png").toExternalForm()); 
-    public Orange(){
+    public Pineapple(){
         this.type = Type.NORMAL_FRUIT;
         setPositionY(1000);
         
@@ -21,11 +32,10 @@ public class Orange extends GameObject{
         choicStyle(getPositionX());
         
     }
-    
-
    
-
-  
+    public BufferedImage[] getImages(){
+        return super.getImages("pineapple");
+    }
     public Image getImage() {
 		return Image;
 	}
