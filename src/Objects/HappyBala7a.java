@@ -24,6 +24,8 @@ public class HappyBala7a extends GameObject{
         setHeight(Image.getHeight());
         setWidth(Image.getWidth());
         choicStyle(getPositionX());
+        images[0]=new Image(getClass().getResource("happyBala7a0.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("happyBala7a1.png").toExternalForm());
     }   
     
     public BufferedImage[] getImages(){

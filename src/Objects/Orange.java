@@ -19,6 +19,8 @@ public class Orange extends GameObject{
         setWidth(Image.getWidth());
         setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
         choicStyle(getPositionX());
+        images[0]=new Image(getClass().getResource("egg0.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("egg1.png").toExternalForm());
         
     }
     

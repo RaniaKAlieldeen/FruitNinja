@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Objects;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import Controller.GameEngine;
+
 import javafx.scene.image.Image;
 
 /**
@@ -16,7 +12,7 @@ import javafx.scene.image.Image;
  * @author user
  */
 public class watermelon extends GameObject {
-	 private Image Image = new Image(getClass().getResource("egg1.png").toExternalForm()); 
+	 private Image Image = new Image(getClass().getResource("bati0.png").toExternalForm()); 
      Random rand = new Random();
     public watermelon(){
         this.type = IGameObject.Type.NORMAL_FRUIT;
@@ -27,6 +23,8 @@ public class watermelon extends GameObject {
         setWidth(Image.getWidth());
         setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
         choicStyle(getPositionX());
+        images[0]=new Image(getClass().getResource("bati0.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("bati1.png").toExternalForm());
     }
 
    

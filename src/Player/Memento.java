@@ -9,10 +9,10 @@ import java.util.ArrayList;
  */
 public class Memento {
     
-     private int score;
-     private int lives;
      private Player player;
      ArrayList<Memento> Mementos = new ArrayList<>();
+    private int lives;
+    private  int score;
      
      public Memento(int score, int lives, Player player){
          this.lives = lives;

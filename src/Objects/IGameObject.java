@@ -83,6 +83,8 @@ public interface IGameObject {
     public int getStyle() ;
 	public void setStyle(int style) ;
 
+	public void setSliced(boolean b);
+
 
 
 }

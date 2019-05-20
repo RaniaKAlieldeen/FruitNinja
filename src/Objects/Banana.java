@@ -23,7 +23,10 @@ public class Banana extends GameObject {
         setHeight(Image.getHeight());
         setWidth(Image.getWidth());  setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
         choicStyle(getPositionX());
+        images[0]=new Image(getClass().getResource("banana0.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("banana1.png").toExternalForm());
     } 
+    
     
     public BufferedImage[] getImages(){
         return super.getImages("banana");

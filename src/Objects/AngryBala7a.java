@@ -24,8 +24,8 @@ public class AngryBala7a extends GameObject {
        setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
 
        choicStyle(getPositionX());
-        
-        
+        images[0]=new Image(getClass().getResource("AngryBala7a.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("AngryBala7a1.png").toExternalForm());
     }
 
     public BufferedImage[] getImages(){
