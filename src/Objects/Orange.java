@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 public class Orange extends GameObject{
     Random rand = new Random();
-    private Image Image = new Image(getClass().getResource("egg0.png").toExternalForm()); 
+    private Image Image = new Image(getClass().getResource("orange0.png").toExternalForm()); 
     public Orange(){
         this.type = Type.NORMAL_FRUIT;
         setPositionY(1000);
@@ -19,8 +19,8 @@ public class Orange extends GameObject{
         setWidth(Image.getWidth());
         setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
         choicStyle(getPositionX());
-        images[0]=new Image(getClass().getResource("egg0.png").toExternalForm());
-        images[1]=new Image(getClass().getResource("egg1.png").toExternalForm());
+        images[0]=new Image(getClass().getResource("orange0.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("orange1.png").toExternalForm());
         
     }
     
