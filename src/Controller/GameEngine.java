@@ -59,27 +59,29 @@ public class GameEngine implements IGameActions {
     }
 
     public void updateScore(GameObject o) {
-        int x = 1;
+        int score = 1;
         if (o.getType() == Type.SPECIAL_BOMB) {
             lives = 0;
-            System.out.println("GAME LOST! LOSER...");
-            exit();
+
+            endGame();
         } else if (o.getType() == Type.NORMAL_BOMB && lives > 0) {
             lives--;
+            endGame();
         } else {
-            if(o.getType() == Type.SPECIAL_FRUIT)
-                x = 5;
+            if (o.getType() == Type.SPECIAL_FRUIT) {
+                score = 5;
+            }
             switch (level) {
                 case EASY:
-                    player.setEasyHighScore(player.getEasyHighScore() + x);
+                    player.setEasyHighScore(player.getEasyHighScore() + score);
                     System.out.println("score is : " + player.getEasyHighScore());
                     break;
                 case MEDIUM:
-                    player.setMedHighScore(player.getMedHighScore() + x);
+                    player.setMedHighScore(player.getMedHighScore() + score);
                     System.out.println("score is : " + player.getMedHighScore());
                     break;
                 case HARD:
-                    player.setHardHighScore(player.getHardHighScore() + x);
+                    player.setHardHighScore(player.getHardHighScore() + score);
                     System.out.println("score is : " + player.getHardHighScore());
                     break;
                 default:
@@ -96,32 +98,32 @@ public class GameEngine implements IGameActions {
                 gc.drawImage(objects.get(i).images[0], objects.get(i).getPositionX(), objects.get(i).getPositionY());
             } else {
                 gc.drawImage(objects.get(i).images[1], objects.get(i).getPositionX(), objects.get(i).getPositionY());
-                
+
             }
             missedFruits(objects.get(i));
         }
 
     }
-    
-    
-    public void missedFruits(GameObject o){
-        if(o.getType() == Type.NORMAL_FRUIT)
-        {
-            if(o.getPositionY()>1100&&lives!=0&&o.getSliced()==false){
-                lives --;
+
+    public void missedFruits(GameObject o) {
+        if (o.getType() == Type.NORMAL_FRUIT) {
+            if (o.getPositionY() > 1100 && lives != 0 && o.getSliced() == false) {
+                lives--;
                 System.out.println("oops u missed a fruit ");
                 endGame();
-                
+
             }
         }
-    
+
     }
 
-    public void endGame(){
-        if(lives <= 0)
-            exit();
+    public void endGame() {
+        if (lives <= 0) {
+            System.out.println("GAME LOST! LOSER...");
+        }
+        exit();
     }
-    
+
     public int setVelocity() {
         int delta;
         if (this.level == Level.EASY) {
@@ -204,7 +206,6 @@ public class GameEngine implements IGameActions {
 
                         objects.get(i).setDeltax(-x);
                     }
-
                 }
             }
         }
@@ -219,7 +220,6 @@ public class GameEngine implements IGameActions {
                 updateScore(objects.get(i));
 
             }
-
         }
     }
 
@@ -285,52 +285,6 @@ public class GameEngine implements IGameActions {
 
     }
 
-    public void createRandObject() {
-        range = 6;
-        if (range > 5) {
-            index = 0;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        } else if (range > 7) {
-            index = 1;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        } else if (range > 8) {
-            index = 2;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        } else if (range > 3) {
-            index = 3;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        } else if (range > 10) {
-            index = 4;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getBomb();
-
-        } else if (range > 15) {
-            index = 5;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getBomb();
-        } else if (range > 25) {
-            index = 6;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        } else if (range > 30) {
-            index = 7;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        } else if (range > 40) {
-            index = 8;
-            factory = new ObjectFactory(o.get(index));
-            test = ObjectFactory.getFruit();
-        }
-
-        // test = ObjectFactory.getFruit();
-        objects.add(test);
-
-    }
-
     @Override
     public void updateObjectsLocations() {
     }
@@ -346,14 +300,10 @@ public class GameEngine implements IGameActions {
     }
 
     public int getcounter() {
-
         return counter;
-
     }
 
     public void setCounter(int counter) {
-
         this.counter = counter;
-
     }
 }

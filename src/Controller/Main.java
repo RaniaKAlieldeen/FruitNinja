@@ -72,8 +72,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
                 System.out.print("Ff");
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println("could not start easy game: " + e);
             }
 
         }
@@ -87,8 +86,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
                 System.out.print("Ff");
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println("could not start medium game:  " + e);
             }
 
         }
@@ -102,8 +100,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
                 System.out.print("Ff");
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println("could not start hard game: " + e);
             }
 
         }
