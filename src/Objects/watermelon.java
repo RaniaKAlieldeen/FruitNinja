@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
  * @author user
  */
 public class watermelon extends GameObject {
-	 private Image Image = new Image(getClass().getResource("bati0.png").toExternalForm()); 
+	 private Image Image = new Image(getClass().getResource("bati2.png").toExternalForm()); 
      Random rand = new Random();
     public watermelon(){
         this.type = IGameObject.Type.NORMAL_FRUIT;
@@ -23,8 +23,8 @@ public class watermelon extends GameObject {
         setWidth(Image.getWidth());
         setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
         choicStyle(getPositionX());
-        images[0]=new Image(getClass().getResource("bati0.png").toExternalForm());
-        images[1]=new Image(getClass().getResource("bati1.png").toExternalForm());
+        images[0]=new Image(getClass().getResource("bati2.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("bati0.png").toExternalForm());
     }
 
    

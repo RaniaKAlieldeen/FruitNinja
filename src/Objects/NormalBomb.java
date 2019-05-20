@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
  */
 public class NormalBomb extends GameObject{
     Random rand = new Random();
-    private Image Image = new Image(getClass().getResource("apple1.png").toExternalForm()); 
+    private Image Image = new Image(getClass().getResource("bomb00.png").toExternalForm()); 
     public NormalBomb(){
         this.type = Type.NORMAL_BOMB;
     
@@ -23,8 +23,8 @@ public class NormalBomb extends GameObject{
         setWidth(Image.getWidth());
         setMaxHeight((int)(Math.random() * ((900 - 500) + 1)) + 500);
         choicStyle(getPositionX());
-        images[0]=new Image(getClass().getResource("apple0.png").toExternalForm());
-        images[1]=new Image(getClass().getResource("apple1.png").toExternalForm());
+        images[0]=new Image(getClass().getResource("bomb0.png").toExternalForm());
+        images[1]=new Image(getClass().getResource("bomb1.png").toExternalForm());
     }
     
    
