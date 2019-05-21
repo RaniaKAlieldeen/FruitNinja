@@ -16,12 +16,14 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     Image easyImage = new Image(getClass().getResource("Easy.jpg").toExternalForm());
     Image medImage = new Image(getClass().getResource("medium.jpg").toExternalForm());
     Image hardImage = new Image(getClass().getResource("hard.jpg").toExternalForm());
+    Image arcadeImage = new Image(getClass().getResource("Arcade1.jpg").toExternalForm());
     Button Easy = new Button();
     Image[] images = new Image[5];
     ImageView[] imagesViews = new ImageView[5];
 
     Button meduim = new Button();
     Button hard = new Button();
+    Button arcade = new Button();
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,6 +34,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         Easy.setGraphic(new ImageView(easyImage));
         meduim.setGraphic(new ImageView(medImage));
         hard.setGraphic(new ImageView(hardImage));
+        arcade.setGraphic(new ImageView(arcadeImage));
         actionlist();
         System.out.println("Ddd");
 
@@ -43,11 +46,14 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         meduim.setLayoutY(100);
         hard.setLayoutX(650);
         hard.setLayoutY(100);
+        arcade.setLayoutX(950);
+        arcade.setLayoutY(100);
 
         p.getChildren().add(imagesViews[randomNumber]);
         p.getChildren().add(Easy);
         p.getChildren().add(meduim);
         p.getChildren().add(hard);
+       p.getChildren().add(arcade);
         Scene scene = new Scene(p, images[randomNumber].getWidth(), images[randomNumber].getHeight());
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -72,7 +78,8 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
                 System.out.print("Ff");
             } catch (Exception e) {
-                System.out.println("could not start easy game: " + e);
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
         }
@@ -86,7 +93,8 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
                 System.out.print("Ff");
             } catch (Exception e) {
-                System.out.println("could not start medium game:  " + e);
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
         }
@@ -100,10 +108,28 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
                 System.out.print("Ff");
             } catch (Exception e) {
-                System.out.println("could not start hard game: " + e);
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
 
         }
+        
+              if (event.getSource() == arcade) {
+            s1.close();
+            Game game = new Game();
+            try {
+                game.setLevel(GameEngine.Level.ARCADE);
+                game.start(new Stage());
+
+                System.out.print("Ff");
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+        
+        
     }
 
     void actionlist() {
@@ -111,6 +137,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         Easy.setOnAction(this);
         meduim.setOnAction(this);
         hard.setOnAction(this);
+        arcade.setOnAction(this);
 
     }
 

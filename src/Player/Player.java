@@ -6,7 +6,7 @@ package Player;
  */
 public class Player {
 
-    private int[] high_score = new int[3];
+    private int[] high_score = new int[4];
 
     public void setEasyHighScore(int score) {
         this.high_score[0] = score;
@@ -31,14 +31,18 @@ public class Player {
     public int getHardHighScore() {
         return high_score[2];
     }
-    
-
+ public void setArcadehScore(int score) {
+        this.high_score[3] = score;
+    }   
+   public int getArcadeHighScore() {
+        return high_score[3];
+    }
     public Player() {
 
         this.high_score[0] = 0;
         this.high_score[1] = 0;
         this.high_score[2] = 0;
-
+        this.high_score[3] = 0;
     }
 
 }
