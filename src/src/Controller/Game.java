@@ -1,6 +1,9 @@
 package Controller;
 
+import Controller.GameEngine.Level;
+import Player.Player;
 import java.sql.Time;
+import java.util.ArrayList;
 
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
@@ -13,121 +16,105 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
 public class Game extends Application {
-	int counter =30;
-	Image background =new Image(getClass().getResource("background.gif").toExternalForm());
-	public static void main(String[] args)
-	{
-		
-		launch(args);
-	}
-	@Override
-	public    void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-	Group root =new Group();
-		 Scene scene=new Scene(root,1000,1000);
 
-			
-			primaryStage.setScene(scene);
-			Canvas canvas =new Canvas(1000,1000);
-			root.getChildren().add(canvas);
-			GraphicsContext gc =canvas.getGraphicsContext2D();
-	
-			 Timeline timeline1=  new Timeline (new KeyFrame(new Duration(1000), ActionEvent ->{
-				 counter--;
-				 System.out.println(counter); 
-					
-					 
-					 
-					 
-				 }));
-			;
-			 Timeline timeline=  new Timeline (new KeyFrame(new Duration(250), ActionEvent ->{
-				 
-				 
-				
-				    GameEngine.getInstance(GameEngine.Level.EASY, null).createGameObject();
-					 
-					 
-					 
-				 }));
-timeline1.setCycleCount(Animation.INDEFINITE);
-			 
-			 timeline1.play();
-		
-				 timeline.setCycleCount(Animation.INDEFINITE);
+    private Level level;
+  
+    Image background = new Image(getClass().getResource("background.gif").toExternalForm());
 
-			 scene.setOnMouseClicked(
-				        new EventHandler<MouseEvent>()
-				        {
-				            public void handle(MouseEvent e)
-				            {       
-				            
-				            	 GameEngine.getInstance(GameEngine.Level.EASY, null).select(e);
-				            	
-				            	
-				            }
-				            }
-				        );
-			
-			new AnimationTimer() {
+    public static void main(String[] args) {
 
-				@Override
-				public void handle(long arg0) {
-					// TODO Auto-generated method stub
-					gc.clearRect(0, 0, 1000, 1000);
-					 if (counter>0)
-					 {
-					 timeline.play();
-					 }
-				 if (counter<0)
-				 {
-					 timeline.stop();
-					 
-					 
-					 
-				 }
-				 setBackground( gc);
-				    GameEngine.getInstance(GameEngine.Level.EASY, null).move();
-				    GameEngine.getInstance(GameEngine.Level.EASY, null).update();
-				 GameEngine.getInstance(GameEngine.Level.EASY, null).render(gc);
-	
-	
-			
+        launch(args);
+    }
 
-		
-				
-				
-		
-			   
-		
-				
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // TODO Auto-generated method stub
+    	
+        Player player =  new Player();
+        Group root = new Group();
+        Scene scene = new Scene(root, 1400, 1000);
+        GameEngine.getInstance(level, player).setMYcounter();
+        primaryStage.setScene(scene);
+        Canvas canvas = new Canvas(1000, 1000);
+        ArrayList<Label> Alllabes =GameEngine.getInstance(level, player).CreateLabels(); 
+        root.getChildren().addAll(Alllabes  );
+        root.getChildren().add(canvas);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
 
-		
-					
-				}
-			}.start();
+        Timeline timeline1 = new Timeline(new KeyFrame(new Duration(1000), ActionEvent -> {
+        	GameEngine.getInstance(level, player).setCounter(GameEngine.getInstance(level, player).getcounter()-1);
+            System.out.println(GameEngine.getInstance(level, player).getcounter());
 
-				
-			primaryStage.setScene(scene);
+        }));
+        
+        Timeline timeline = new Timeline(new KeyFrame(new Duration(7000), ActionEvent -> {
 
-				
-				primaryStage.show();}
-	
-	
+            GameEngine.getInstance(level, player).createGameObject();
 
+        }));
+        timeline1.setCycleCount(Animation.INDEFINITE);
 
+        timeline1.play();
 
+        timeline.setCycleCount(Animation.INDEFINITE);
 
-public void setBackground(GraphicsContext gc)
-{
-	gc.drawImage(background, 0, 0); 
-	 
-}
+        scene.setOnMouseClicked(
+                new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent e) {
+
+                GameEngine.getInstance(level, player).select(e);
+
+            }
+        }
+        );
+
+        new AnimationTimer() {
+
+            @Override
+            public void handle(long arg0) {
+                // TODO Auto-generated method stub
+                gc.clearRect(0, 0, 1000, 1000);
+                if (GameEngine.getInstance(level, player).getcounter() > 0) {
+                    timeline.play();
+                }
+                if (GameEngine.getInstance(level, player).getcounter() < 0) {
+                    timeline.stop();
+
+                }
+                setBackground(gc);
+        
+                GameEngine.getInstance(level, player).move();
+                GameEngine.getInstance(level, player).update();
+                GameEngine.getInstance(level, player).render(gc);
+                GameEngine.getInstance(level, player).SetText(Alllabes);
+            }
+        }.start();
+
+        primaryStage.setScene(scene);
+
+        primaryStage.show();
+    }
+
+    public void setBackground(GraphicsContext gc) {
+        gc.drawImage(background, 0, 0);
+
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+    
+    
 }
