@@ -17,6 +17,6 @@ public interface IObjectFactory {
     
     public boolean getType();
     
-    public BufferedImage[] getImages(String filename);
+  
     
 }
