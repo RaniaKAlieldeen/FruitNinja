@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
  */
 public class NormalBomb extends GameObject{
     Random rand = new Random();
-    private Image Image = new Image(getClass().getResource("bomb00.png").toExternalForm()); 
+    private Image Image = new Image(getClass().getResource("bomb0.png").toExternalForm()); 
     public NormalBomb(){
         this.type = Type.NORMAL_BOMB;
     

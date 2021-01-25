@@ -1,7 +1,6 @@
-package Controller;
+package Controller1;
 
-import Controller.GameEngine.Level;
-import Player.Player;
+import Controller1.GameEngine.Level;
 import java.sql.Time;
 
 import javafx.animation.Animation;
@@ -22,9 +21,8 @@ import javafx.util.Duration;
 
 public class Game extends Application {
 
-    private Level level;
-    //long  counter = 30;
-    //int counter1=50;
+    Level level = Level.HARD;
+    int counter = 30;
     Image background = new Image(getClass().getResource("background.gif").toExternalForm());
 
     public static void main(String[] args) {
@@ -35,8 +33,6 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // TODO Auto-generated method stub
-        
-        Player player =  new Player();
         Group root = new Group();
         Scene scene = new Scene(root, 1000, 1000);
 
@@ -44,18 +40,16 @@ public class Game extends Application {
         Canvas canvas = new Canvas(1000, 1000);
         root.getChildren().add(canvas);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-        GameEngine.getInstance(level, player).SelectNumberOfLives();
-        GameEngine.getInstance(level, player).getcounter();
 
         Timeline timeline1 = new Timeline(new KeyFrame(new Duration(1000), ActionEvent -> {
-           GameEngine.getInstance(level, player).getcounter();
-            System.out.println(GameEngine.getInstance(level, player).getcounter());
+            counter--;
+            System.out.println(counter);
 
         }));
-      
-        Timeline timeline = new Timeline(new KeyFrame(new Duration(1000), ActionEvent -> {
+        ;
+        Timeline timeline = new Timeline(new KeyFrame(new Duration(3000), ActionEvent -> {
 
-            GameEngine.getInstance(level, player).createGameObject();
+            GameEngine.getInstance(level, null).createGameObject();
 
         }));
         timeline1.setCycleCount(Animation.INDEFINITE);
@@ -68,7 +62,7 @@ public class Game extends Application {
                 new EventHandler<MouseEvent>() {
             public void handle(MouseEvent e) {
 
-                GameEngine.getInstance(level, player).select(e);
+                GameEngine.getInstance(level, null).select(e);
 
             }
         }
@@ -80,21 +74,20 @@ public class Game extends Application {
             public void handle(long arg0) {
                 // TODO Auto-generated method stub
                 gc.clearRect(0, 0, 1000, 1000);
-                if (GameEngine.getInstance(level, player).getcounter() > 0) {
+                if (counter > 0) {
                     timeline.play();
                 }
-                if (GameEngine.getInstance(level, player).getcounter() < 0) {
+                if (counter < 0) {
                     timeline.stop();
 
                 }
                 setBackground(gc);
-                GameEngine.getInstance(level, player).move();
-                GameEngine.getInstance(level, player).update();
-                GameEngine.getInstance(level, player).render(gc);
+                GameEngine.getInstance(level, null).move();
+                GameEngine.getInstance(level, null).update();
+                GameEngine.getInstance(level, null).render(gc);
 
             }
-        }
-                .start();
+        }.start();
 
         primaryStage.setScene(scene);
 
@@ -105,14 +98,4 @@ public class Game extends Application {
         gc.drawImage(background, 0, 0);
 
     }
-
-    public Level getLevel() {
-        return level;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
-    }
-    
-    
 }
