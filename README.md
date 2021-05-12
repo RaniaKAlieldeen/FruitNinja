@@ -21,7 +21,7 @@ We are going to implement fruit ninja game. In this project you are required to:
 * Singleton
 * State
 * Memento
-### You must use MVC
+### MVC
  
 ## levels 
 * Easy 
